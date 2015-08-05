@@ -35,7 +35,9 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class ksplice {
-
-
+class ksplice inherits ksplice::params {
+  class{'::ksplice::repo':} ->
+  class{'::ksplice::install':} ->
+  class{'::ksplice::config':} ->
+  class{'::ksplice::cron':}
 }
