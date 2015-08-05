@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 describe 'ksplice' do
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
@@ -41,27 +42,27 @@ describe 'ksplice' do
           it { should contain_cron('ksplice').with_weekday('*') }
 
           describe 'allow custom cron minute' do
-            let(:params) { {:minute => '0,15,30,45' } }
+            let(:params) { {:cron_minute => '0,15,30,45' } }
             it { should contain_cron('ksplice').with_minute('0,15,30,45') }
           end
 
           describe 'allow custom cron hour' do
-            let(:params) { {:hour => '3' } }
+            let(:params) { {:cron_hour => '3' } }
             it { should contain_cron('ksplice').with_hour('3') }
           end
 
           describe 'allow custom cron month' do
-            let(:params) { {:month => '14' } }
+            let(:params) { {:cron_month => '14' } }
             it { should contain_cron('ksplice').with_month('14') }
           end
 
           describe 'allow custom cron monthday' do
-            let(:params) { {:monthday => '15' } }
+            let(:params) { {:cron_monthday => '15' } }
             it { should contain_cron('ksplice').with_monthday('15') }
           end
 
           describe 'allow custom cron weekday' do
-            let(:params) { {:weekday => '4' } }
+            let(:params) { {:cron_weekday => '4' } }
             it { should contain_cron('ksplice').with_weekday('4') }
           end
 
