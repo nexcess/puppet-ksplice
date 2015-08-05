@@ -15,7 +15,6 @@ describe 'ksplice' do
 
         describe "ksplice::repo" do
           it { should contain_yumrepo('ksplice-uptrack').with_name('Ksplice Uptrack') }
-          it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/" + facts[:operatingsystem].downcase + "/$releasever/$basearch/") }
           it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/#{facts[:operatingsystem].downcase}/$releasever/$basearch/") }
           it { should contain_yumrepo('ksplice-uptrack').with_enabled('1') }
           it { should contain_yumrepo('ksplice-uptrack').with_gpgcheck('1') }
