@@ -1,5 +1,5 @@
 [Auth]
-accesskey = <% @config_accesskey -%>
+accesskey = <%= scope.lookupvar('ksplice::config_accesskey') %>
 
 [Network]
 # Proxy to use when accessing the Uptrack server, of the form
@@ -46,16 +46,16 @@ gconf_proxy_lookup = no
 # Automatically install updates at boot time. If this is set, on
 # reboot into the same kernel, Uptrack will re-install the same set of
 # updates that were present before the reboot.
-install_on_reboot = <% @config_install_on_reboot -%>
+install_on_reboot = <%= scope.lookupvar('ksplice::config_install_on_reboot') ? 'yes' : 'no' %>
 
 # Automatically install all available updates at boot time, even if
 # rebooted into a different kernel.
-upgrade_on_reboot = <% @config_upgrade_on_reboot -%>
+upgrade_on_reboot = <%= scope.lookupvar('ksplice::config_upgrade_on_reboot') ? 'yes' : 'no' %>
 
 # Uptrack runs in a cron job every few hours to check for and download
 # new updates. You can can configure this cron job to automatically
 # install new updates as they become available.
-# 
+#
 # Enable this option to make the cron job automatically install new
 # updates.
 #
@@ -63,4 +63,4 @@ upgrade_on_reboot = <% @config_upgrade_on_reboot -%>
 # client itself is automatically upgraded. You will be notified via
 # e-mail when a new Uptrack client is available, and it can be
 # upgraded through your package manager.
-autoinstall = <% @config_autoinstall -%>
+autoinstall = <%= scope.lookupvar('ksplice::config_autoinstall') ? 'yes' : 'no' %>
