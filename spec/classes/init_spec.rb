@@ -14,7 +14,14 @@ describe 'ksplice' do
         it { should contain_class('ksplice::cron') }
 
         describe "ksplice::repo" do
-          it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/#{facts[:operatingsystem].downcase}/$releasever/$basearch/") }
+          case facts[:operatingsystem]
+          when 'CentOS'
+            it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/centos/$releasever/$basearch/") }
+          when 'RedHat'
+            it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/rhel/$releasever/$basearch/") }
+          when 'Fedora'
+            it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/fedora/$releasever/$basearch/") }
+          end
           it { should contain_yumrepo('ksplice-uptrack').with_enabled('1') }
           it { should contain_yumrepo('ksplice-uptrack').with_gpgcheck('1') }
           it { should contain_yumrepo('ksplice-uptrack').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
