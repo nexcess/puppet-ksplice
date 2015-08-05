@@ -4,6 +4,6 @@ class ksplice::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
-    content => template("$ksplice::config_template")
+    content => template($ksplice::config_template),
   }
 }
