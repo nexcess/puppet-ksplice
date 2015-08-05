@@ -75,7 +75,7 @@ describe 'ksplice' do
           end
 
           describe 'set accesskey' do
-            let(:params) { {:accesskey => 'deadbeef'} }
+            let(:params) { {:config_accesskey => 'deadbeef'} }
             it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/accesskey = deadbeef/) }
           end
 
