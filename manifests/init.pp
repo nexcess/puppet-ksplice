@@ -50,7 +50,11 @@ class ksplice (
   $cron_weekday             = $ksplice::params::cron_weekday,
 
   ) inherits ksplice::params {
-
+    validate_string($config_template)
+    validate_string($config_accesskey)
+    validate_bool($config_install_on_reboot)
+    validate_bool($config_upgrade_on_reboot)
+    validate_bool($config_autoinstall)
 
     class{'::ksplice::repo':} ->
     class{'::ksplice::install':} ->
