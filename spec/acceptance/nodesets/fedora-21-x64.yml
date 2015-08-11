@@ -1,6 +1,6 @@
 HOSTS:
   fedora-21-x64:
-    platform: el-7-x86_64
+    platform: fedora-21-x86_64
     box: chef/fedora-21
     box_url: https://vagrantcloud.com/chef/boxes/fedora-21
     hypervisor: vagrant
