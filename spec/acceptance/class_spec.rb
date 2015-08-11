@@ -51,7 +51,25 @@ describe 'ksplice class' do
       end
     end
 
+    if ! ENV['KSPLICE_LICENSE'].nil?
+      context 'with a ksplice license' do
+        # Using puppet_apply as a helper
+        it 'should work idempotently with no errors' do
+          pp = <<-EOS
+          class { 'ksplice': config_accesskey=>#{ENV['KSPLICE_LICENSE']}}
+          EOS
 
+          # Run it twice and test for idempotency
+          apply_manifest(pp, :catch_failures => true)
+          apply_manifest(pp, :catch_changes  => true)
+        end
+
+        it 'should upgrade the kernel' do
+          shell('/usr/sbin/uptrack-upgrade -y --all')
+          shell(%q{test "$(uname -r)" != "$(uptrack-uname -r)"}, :acceptable_exit_codes => 0)
+        end
+      end
+    end
   end
 end
 
