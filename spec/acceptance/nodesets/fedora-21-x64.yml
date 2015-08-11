@@ -1,7 +1,5 @@
 HOSTS:
   fedora-21-x64:
-    roles:
-      - master
     platform: el-7-x86_64
     box: chef/fedora-21
     box_url: https://vagrantcloud.com/chef/boxes/fedora-21
