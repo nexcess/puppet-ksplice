@@ -1,5 +1,5 @@
 class ksplice::repo {
-  case $operatingsystem {
+  case $::operatingsystem {
     'CentOS', 'RedHat', 'Fedora': {
 
       # convert the various operating systems to the names the ksplice-uptrack repo uses
