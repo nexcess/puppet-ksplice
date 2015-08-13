@@ -16,9 +16,12 @@ describe 'ksplice class' do
 
 
     describe "ksplice::repo" do
-      describe yumrepo('ksplice-uptrack') do
-        it { is_expected.to exist }
-        it { is_expected.to be_enabled }
+      case fact('operatingsystem')
+      when 'CentOS', 'RedHat', 'Fedora'
+        describe yumrepo('ksplice-uptrack') do
+          it { is_expected.to exist }
+          it { is_expected.to be_enabled }
+        end
       end
     end
 
@@ -66,7 +69,7 @@ describe 'ksplice class' do
 
         it 'should upgrade the kernel' do
           shell('/usr/sbin/uptrack-upgrade -y --all')
-          shell(%q{test "$(uname -r)" != "$(uptrack-uname -r)"}, :acceptable_exit_codes => 0)
+          shell(%q{test "$(uname -a)" != "$(uptrack-uname -a)"}, :acceptable_exit_codes => 0)
         end
       end
     end

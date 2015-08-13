@@ -29,6 +29,7 @@ RSpec.configure do |c|
         scp_to host, "#{proj_root}/#{file}", "#{host['distmoduledir']}/ksplice"
       end
       on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
     end
   end
 end

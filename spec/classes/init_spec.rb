@@ -16,6 +16,13 @@ describe 'ksplice' do
 
         describe "ksplice::repo" do
           case facts[:operatingsystem]
+          when 'CentOS', 'RedHat', 'Fedora'
+            it { should contain_yumrepo('ksplice-uptrack').with_enabled('1') }
+            it { should contain_yumrepo('ksplice-uptrack').with_gpgcheck('1') }
+            it { should contain_yumrepo('ksplice-uptrack').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
+          when 'Debian', 'Ubuntu'
+            it { should contain_apt__source('ksplice').with_location('http://www.ksplice.com/apt/') }
+            it { should contain_apt__source('ksplice').with_repos('ksplice') }
           when 'CentOS'
             it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/centos/$releasever/$basearch/") }
           when 'RedHat'
@@ -23,9 +30,6 @@ describe 'ksplice' do
           when 'Fedora'
             it { should contain_yumrepo('ksplice-uptrack').with_baseurl("http://www.ksplice.com/yum/uptrack/fedora/$releasever/$basearch/") }
           end
-          it { should contain_yumrepo('ksplice-uptrack').with_enabled('1') }
-          it { should contain_yumrepo('ksplice-uptrack').with_gpgcheck('1') }
-          it { should contain_yumrepo('ksplice-uptrack').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
         end
 
         describe "ksplice::install" do

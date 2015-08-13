@@ -9,6 +9,22 @@
   "issues_url": "https://github.com/nexcess/nexcess-ksplice/issues",
   "operatingsystem_support": [
     {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04",
+        "15.04"
+      ]
+    },
+    {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "5",
@@ -33,6 +49,7 @@
     }
   ],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"}
   ]
 }
