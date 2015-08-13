@@ -13,3 +13,9 @@ Facter.add(:ksplice_kernelmajversion) do
     Facter.value(:ksplice_kernelversion).split('.')[0..1].join('.')
   end
 end
+
+Facter.add(:ksplice_kernel_package_version) do
+  setcode do
+    Facter::Util::Resolution.exec('/usr/bin/uptrack-uname --package-version').split[2]
+  end
+end
