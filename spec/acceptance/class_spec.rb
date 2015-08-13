@@ -18,7 +18,7 @@ describe 'ksplice class' do
     describe "ksplice::repo" do
       case fact('operatingsystem')
       when 'CentOS', 'RedHat', 'Fedora'
-        describe yumrepo('ksplice-uptrack') do
+        describe yumrepo('ksplice') do
           it { is_expected.to exist }
           it { is_expected.to be_enabled }
         end

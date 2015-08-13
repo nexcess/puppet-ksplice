@@ -9,7 +9,7 @@ class ksplice::repo {
         'Fedora' => 'fedora',
       }
 
-      yumrepo {'ksplice-uptrack':
+      yumrepo {'ksplice':
         ensure   => 'present',
         baseurl  => "http://www.ksplice.com/yum/uptrack/${os}/\$releasever/\$basearch/",
         enabled  => '1',
