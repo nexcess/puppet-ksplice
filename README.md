@@ -3,77 +3,155 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with ksplice](#setup)
-    * [What ksplice affects](#what-ksplice-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with ksplice](#beginning-with-ksplice)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+2. [Module Description ](#module-description)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference ](#reference)
+5. [Limitations](#limitations)
+6. [Development](#development)
+7. [Copyright](#copyright)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module installs, configures, and manages ksplice for rebootless kernel upgrades.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+The ksplice module installs, configures, and manages
+[ksplice](http://ksplice.oracle.com/) to update your kernel without needing to
+reboot.
 
-## Setup
+A license/access key from ksplice is required for rebootless upgrades to work.
 
-### What ksplice affects
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-### Beginning with ksplice
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+The module will install the ksplice repository, install the uptrack package, and
+manage the ksplice configuration file.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+### Beginning with ksplice
+If you have a license key and want to check for kernel updates every 30 minutes and automatically install them. This is what the normal manual installation of ksplice will do.
+
+```
+class { '::ksplice':
+  config_accesskey => 'YOUR_LICENSE_KEY',
+}
+```
+
+
+### Custom cron times
+
+By default uptrack runs every 30 minutes unless you give it a custom cron time.
+
+```
+class { '::ksplice':
+  config_accesskey	=> 'YOUR_LICENSE_KEY',
+  cron_minute		=> '13',
+  cron_hour			=> '03',
+  cron_month		=> '*',
+  cron_monthday		=> '*',
+  cron_weekday		=> '*',
+}
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### Classes
+
+* ksplice::repo: Installs the package repository on the server
+* ksplice::install: Installs the uptrack package on the server
+* ksplice::config: Manages the configuration for uptrack
+* ksplice::cron: Manages the cron job for uptrack
+
+
+### Parameters
+
+#### `config_template`
+Specify a custom template to use. Default value: 'ksplice/uptrack.conf.erb'
+
+#### `config_accesskey`
+Specify your accesskey. Default value: 'INSERT_ACCESS_KEY'
+
+#### `config_install_on_reboot`
+Automatically install updates at boot time. If this is set, on reboot into the same kernel, uptrack will re-install the same set of updates that were present before the reboot. Default value: 'true'
+
+#### `config_upgrade_on_reboot`
+Automatically install all available updates at boot time, even if rebooted into a different kernel. Default value: 'true'
+
+#### `config_autoinstall`
+Uptrack runs in a cron job to check for and download new updates. You can can configure this cron job to automatically install new updates as they become available. Default value: 'true'
+
+
+#### `cron_minute`
+Specify a custom cron_minute. Default value: `[fqdn_rand(30) , fqdn_rand(30) + 30]`
+
+#### `cron_hour`
+Specify a custom cron_hour. Default value: '*'
+
+#### `cron_month`
+Specify a custom cron_month. Default value: '*'
+
+#### `cron_monthday`
+Specify a custom cron_monthday. Default value: '*'
+
+#### `cron_weekday`
+Specify a custom cron_weekday. Default value: '*'
+
+### Facts
+`uptrack-uname` will print out the effective version of kernel after patching. It accepts uname(1) command-line options and produces compatible output. There are facts, using uptrack-uname, corresponding to the kernel facts that already come with facter.
+
+* ksplice_kernelrelease: effective kernel release
+* ksplice_kernelversion: effective kernel version
+* ksplice_kernelmajversion: effective kernel major version
+* ksplice_kernel_package_version: effective version of the distribution's kernel package
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+The module works with currently supported versions of CentOS, RHEL, Debian,
+Ubuntu, and Fedora. It has been tested on CentOS, Debian, Ubuntu, and Fedora. It
+can probably work on Oracle Linux and Scientific Linux with minimal work.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Install necessary gems:
+```
+bundle install --path vendor/bundle
+```
 
-## Release Notes/Contributors/Etc **Optional**
+Check syntax of all puppet manifests, erb templates, and ruby files:
+```
+bundle exec rake validate
+```
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Run puppetlint on all puppet files:
+```
+bundle exec rake lint
+```
+
+Run spec tests in a clean fixtures directory
+```
+bundle exec rake spec
+```
+
+Run acceptance tests with a ksplice license:
+```
+KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/centos-66-x64.yml bundle exec rake acceptance
+KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/debian-610-x64.yml bundle exec rake acceptance
+```
+
+## Copyright
+
+Copyright (C) 2015 Nexcess
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
