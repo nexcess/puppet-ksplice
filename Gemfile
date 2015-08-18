@@ -8,3 +8,4 @@ gem 'facter', '>= 1.7.0'
 gem "rspec-puppet-facts"
 gem "beaker"
 gem "beaker-rspec"
+gem "puppet-blacksmith"
