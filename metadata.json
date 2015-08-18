@@ -1,13 +1,16 @@
 {
   "name": "nexcess-ksplice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "nexcess",
   "summary": "Install and configure ksplice for Centos, RHEL, Fedora, Debian, and Ubuntu",
   "license": "GPL-2.0+",
   "source": "https://github.com/nexcess/puppet-ksplice",
   "project_page": "https://github.com/nexcess/puppet-ksplice",
   "issues_url": "https://github.com/nexcess/puppet-ksplice/issues",
-  "tags": ["kernel", "ksplice"],
+  "tags": [
+    "kernel",
+    "ksplice"
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
@@ -50,7 +53,13 @@
     }
   ],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
-    {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"}
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs-apt",
+      "version_requirement": ">= 2.0.0"
+    }
   ]
 }
