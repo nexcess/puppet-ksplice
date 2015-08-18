@@ -24,8 +24,8 @@ class ksplice::repo {
         location => 'http://www.ksplice.com/apt/',
         repos    => 'ksplice',
         key      => {
-          'id'      => '5DE2D4F255E23055D3C40F2CF7CA6265B6D4038E',
-          'source'  => 'https://www.ksplice.com/apt/ksplice-archive.asc',
+          'id'     => '5DE2D4F255E23055D3C40F2CF7CA6265B6D4038E',
+          'source' => 'https://www.ksplice.com/apt/ksplice-archive.asc',
         }
       }
       Class['apt::update'] -> Class['ksplice::install']
