@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "author": "nexcess",
   "summary": "Install and configure ksplice for Centos, RHEL, Fedora, Debian, and Ubuntu",
-  "license": "GPL-2.0+",
+  "license": "Apache-2.0",
   "source": "https://github.com/nexcess/puppet-ksplice",
   "project_page": "https://github.com/nexcess/puppet-ksplice",
   "issues_url": "https://github.com/nexcess/puppet-ksplice/issues",
