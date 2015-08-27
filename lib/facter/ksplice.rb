@@ -1,6 +1,8 @@
 if File.exist?('/usr/bin/uptrack-uname')
   Facter.add(:ksplice_kernelrelease) do
-    setcode '/usr/bin/uptrack-uname -r'
+    setcode do
+      Facter::Util::Resolution.exec('/usr/bin/uptrack-uname -r 2>/dev/null')
+    end
   end
 
   Facter.add(:ksplice_kernelversion) do
@@ -17,7 +19,7 @@ if File.exist?('/usr/bin/uptrack-uname')
 
   Facter.add(:ksplice_kernel_package_version) do
     setcode do
-      Facter::Util::Resolution.exec('/usr/bin/uptrack-uname --package-version').split[2]
+      Facter::Util::Resolution.exec('/usr/bin/uptrack-uname --package-version 2>/dev/null').split[2]
     end
   end
 end
