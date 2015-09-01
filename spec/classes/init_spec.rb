@@ -7,7 +7,7 @@ describe 'ksplice' do
         let(:facts) do
           facts
         end
-
+        it { should contain_class('ksplice') }
         it { should contain_class('ksplice::params') }
         it { should contain_class('ksplice::repo') }
         it { should contain_class('ksplice::install') }
