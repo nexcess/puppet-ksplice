@@ -15,25 +15,71 @@ describe 'ksplice' do
         it { should contain_class('ksplice::cron') }
 
         describe "ksplice::repo" do
-          case facts[:operatingsystem]
-          when 'CentOS', 'RedHat', 'Fedora'
-            it { should contain_yumrepo('ksplice').with_enabled('1') }
-            it { should contain_yumrepo('ksplice').with_gpgcheck('1') }
+          case facts[:osfamily]
+          when 'RedHat'
+            it { should contain_yumrepo('ksplice').with_enabled('true') }
+            it { should contain_yumrepo('ksplice').with_gpgcheck('true') }
             it { should contain_yumrepo('ksplice').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
-          when 'Debian', 'Ubuntu'
+
+            case facts[:operatingsystem]
+            when 'CentOS'
+              it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/centos/$releasever/$basearch/") }
+            when 'RedHat'
+              it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/rhel/$releasever/$basearch/") }
+            when 'Fedora'
+              it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/fedora/$releasever/$basearch/") }
+            end
+
+            describe 'allow custom name' do
+              let(:params) { {:repo_name => 'lsplice' } }
+              it { should contain_yumrepo('lsplice') }
+            end
+            describe 'allow custom ensure' do
+              let(:params) { {:repo_ensure => 'absent' } }
+              it { should contain_yumrepo('ksplice').with_ensure('absent') }
+            end
+            describe 'allow custom repo_yum_baseurl_prefix' do
+              let(:params) { {:repo_yum_baseurl_prefix => 'http://mirror.example.com/ksplice/' } }
+              it { should contain_yumrepo('ksplice').with_basurl =~ %r{^http://mirror.example.com/ksplice/} }
+            end
+
+          describe 'allow custom enabled' do
+            let(:params) { {:repo_enabled => false } }
+            it { should contain_yumrepo('ksplice').with_enabled('false') }
+          end
+
+          describe 'allow custom gpgcheck' do
+            let(:params) { {:repo_gpgcheck => false } }
+            it { should contain_yumrepo('ksplice').with_gpgcheck('false') }
+          end
+
+          describe 'allow custom gpgkey' do
+            let(:params) { {:repo_gpgkey => 'https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice' } }
+            it { should contain_yumrepo('ksplice').with_gpgkey('https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice') }
+          end
+          when 'Debian'
             it { should contain_apt__source('ksplice').with_location('http://www.ksplice.com/apt/') }
             it { should contain_apt__source('ksplice').with_repos('ksplice') }
-          when 'CentOS'
-            it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/centos/$releasever/$basearch/") }
-          when 'RedHat'
-            it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/rhel/$releasever/$basearch/") }
-          when 'Fedora'
-            it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/fedora/$releasever/$basearch/") }
+            it { should contain_apt__source('ksplice').with_key('id' => '5DE2D4F255E23055D3C40F2CF7CA6265B6D4038E', 'source' => 'https://www.ksplice.com/apt/ksplice-archive.asc') }
+
+            describe 'allow custom name' do
+              let(:params) { {:repo_name => 'lsplice' } }
+              it { should contain_apt__source('lsplice') }
+            end
+            describe 'allow custom key id and source' do
+              let(:params) { {:repo_key_id => 'ABCD1234', :repo_key_source => 'https://example.com/key.asc' } }
+              it { should contain_apt__source('ksplice').with_key('id' => 'ABCD1234', 'source' => 'https://example.com/key.asc') }
+            end
           end
+
         end
 
         describe "ksplice::install" do
           it { should contain_package('uptrack') }
+          describe 'allow custom version' do
+            let(:params) { {:package_ensure => '1.2.3' } }
+            it { should contain_package('uptrack').with_ensure('1.2.3') }
+          end
         end
 
         describe "ksplice::cron" do

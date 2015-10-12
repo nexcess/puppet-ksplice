@@ -80,7 +80,6 @@ Automatically install all available updates at boot time, even if rebooted into 
 #### `config_autoinstall`
 Uptrack runs in a cron job to check for and download new updates. You can can configure this cron job to automatically install new updates as they become available. Default value: 'true'
 
-
 #### `cron_minute`
 Specify a custom cron_minute. Default value: `[fqdn_rand(30) , fqdn_rand(30) + 30]`
 
@@ -95,6 +94,36 @@ Specify a custom cron_monthday. Default value: '*'
 
 #### `cron_weekday`
 Specify a custom cron_weekday. Default value: '*'
+
+#### `repo_name`
+Specify a custom name for the yum and apt repo. Default value: 'ksplice'
+
+#### `repo_ensure`
+Specify the ensure value for the yum and apt repo. Default value: 'present'
+
+#### `repo_yum_baseurl_prefix`
+Specify a baseurl_prefix for the yum repo. It isn't documented anywhere but you can mirror the uptrack packages from ksplice.com using rsync. Default value: 'http://www.ksplice.com/yum/uptrack/'
+
+#### `repo_apt_location`
+Specify a baseurl_prefix for the yum repo. It isn't documented anywhere but you can mirror the uptrack packages from ksplice.com using rsync. Default value: 'http://www.ksplice.com/apt/'
+
+#### `repo_enabled`
+Specify the enable value for the yum and apt repo. Default value: true
+
+#### `repo_gpgcheck`
+Specify the gpgcheck value for the yum repo. Default value: true
+
+#### `repo_gpgkey`
+Specify a custom url or path for the GPG key for the packages in the yum repo. Default value: 'https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice'
+
+#### `repo_key_id`
+Specify a custom key id for the apt repo. Default value: '5DE2D4F255E23055D3C40F2CF7CA6265B6D4038E'
+
+#### `repo_key_source`
+Specify a custom url for the apt key. Default value: 'https://www.ksplice.com/apt/ksplice-archive.asc'
+
+#### `package_ensure`
+Specify a version of status for the uptrack package. Default value: 'present'
 
 ### Facts
 `uptrack-uname` will print out the effective version of kernel after patching. It accepts uname(1) command-line options and produces compatible output. There are facts, using uptrack-uname, corresponding to the kernel facts that already come with facter.

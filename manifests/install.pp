@@ -1,5 +1,5 @@
 class ksplice::install {
   package {'uptrack':
-    ensure => 'present',
+    ensure => $ksplice::package_ensure,
   }
 }

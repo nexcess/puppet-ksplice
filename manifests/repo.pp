@@ -9,23 +9,23 @@ class ksplice::repo {
         'Fedora' => 'fedora',
       }
 
-      yumrepo {'ksplice':
-        ensure   => 'present',
-        baseurl  => "http://www.ksplice.com/yum/uptrack/${os}/\$releasever/\$basearch/",
-        enabled  => '1',
-        gpgcheck => '1',
-        gpgkey   => 'https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice',
+      yumrepo {$ksplice::repo_name:
+        ensure   => $ksplice::repo_ensure,
+        baseurl  => "${ksplice::repo_yum_baseurl_prefix}/${os}/\$releasever/\$basearch/",
+        enabled  => $ksplice::repo_enabled,
+        gpgcheck => $ksplice::repo_gpgcheck,
+        gpgkey   => $ksplice::repo_gpgkey,
       }
     }
     'Debian', 'Ubuntu': {
       include ::apt
-      apt::source {'ksplice':
-        ensure   => 'present',
-        location => 'http://www.ksplice.com/apt/',
-        repos    => 'ksplice',
+      apt::source {$ksplice::repo_name:
+        ensure   => $ksplice::repo_ensure,
+        location => $ksplice::repo_apt_location,
+        repos    => $ksplice::repo_name,
         key      => {
-          'id'     => '5DE2D4F255E23055D3C40F2CF7CA6265B6D4038E',
-          'source' => 'https://www.ksplice.com/apt/ksplice-archive.asc',
+          'id'     => $ksplice::repo_key_id,
+          'source' => $ksplice::repo_key_source,
         }
       }
       Class['apt::update'] -> Class['ksplice::install']
