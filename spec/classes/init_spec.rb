@@ -17,8 +17,8 @@ describe 'ksplice' do
         describe "ksplice::repo" do
           case facts[:osfamily]
           when 'RedHat'
-            it { should contain_yumrepo('ksplice').with_enabled('true') }
-            it { should contain_yumrepo('ksplice').with_gpgcheck('true') }
+            it { should contain_yumrepo('ksplice').with_enabled(1) }
+            it { should contain_yumrepo('ksplice').with_gpgcheck(1) }
             it { should contain_yumrepo('ksplice').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
 
             case facts[:operatingsystem]
@@ -41,12 +41,12 @@ describe 'ksplice' do
 
           describe 'allow custom enabled' do
             let(:params) { {:repo_enabled => false } }
-            it { should contain_yumrepo('ksplice').with_enabled('false') }
+            it { should contain_yumrepo('ksplice').with_enabled(0) }
           end
 
           describe 'allow custom gpgcheck' do
             let(:params) { {:repo_gpgcheck => false } }
-            it { should contain_yumrepo('ksplice').with_gpgcheck('false') }
+            it { should contain_yumrepo('ksplice').with_gpgcheck(0) }
           end
 
           describe 'allow custom gpgkey' do

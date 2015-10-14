@@ -11,8 +11,8 @@ class ksplice::repo {
 
       yumrepo {$ksplice::repo_name:
         baseurl  => "${ksplice::repo_yum_baseurl_prefix}/${os}/\$releasever/\$basearch/",
-        enabled  => $ksplice::repo_enabled,
-        gpgcheck => $ksplice::repo_gpgcheck,
+        enabled  => bool2num($ksplice::repo_enabled),
+        gpgcheck => bool2num($ksplice::repo_gpgcheck),
         gpgkey   => $ksplice::repo_gpgkey,
       }
     }
