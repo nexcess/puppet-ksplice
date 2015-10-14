@@ -13,7 +13,6 @@ class ksplice (
   $cron_weekday             = $ksplice::params::cron_weekday,
 
   $repo_name                = $ksplice::params::repo_name,
-  $repo_ensure              = $ksplice::params::repo_ensure,
   $repo_yum_baseurl_prefix  = $ksplice::params::repo_yum_baseurl_prefix,
   $repo_apt_location        = $ksplice::params::repo_apt_location,
   $repo_enabled             = $ksplice::params::repo_enabled,
@@ -32,7 +31,6 @@ class ksplice (
     validate_bool($config_autoinstall)
 
     validate_string($repo_name)
-    validate_re($repo_ensure, '^(present|absent)')
     validate_string($repo_yum_baseurl_prefix)
     validate_string($repo_apt_location)
     validate_bool($repo_enabled)

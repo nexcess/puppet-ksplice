@@ -34,10 +34,6 @@ describe 'ksplice' do
               let(:params) { {:repo_name => 'lsplice' } }
               it { should contain_yumrepo('lsplice') }
             end
-            describe 'allow custom ensure' do
-              let(:params) { {:repo_ensure => 'absent' } }
-              it { should contain_yumrepo('ksplice').with_ensure('absent') }
-            end
             describe 'allow custom repo_yum_baseurl_prefix' do
               let(:params) { {:repo_yum_baseurl_prefix => 'http://mirror.example.com/ksplice/' } }
               it { should contain_yumrepo('ksplice').with_basurl =~ %r{^http://mirror.example.com/ksplice/} }

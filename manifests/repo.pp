@@ -10,7 +10,6 @@ class ksplice::repo {
       }
 
       yumrepo {$ksplice::repo_name:
-        ensure   => $ksplice::repo_ensure,
         baseurl  => "${ksplice::repo_yum_baseurl_prefix}/${os}/\$releasever/\$basearch/",
         enabled  => $ksplice::repo_enabled,
         gpgcheck => $ksplice::repo_gpgcheck,
@@ -20,7 +19,6 @@ class ksplice::repo {
     'Debian', 'Ubuntu': {
       include ::apt
       apt::source {$ksplice::repo_name:
-        ensure   => $ksplice::repo_ensure,
         location => $ksplice::repo_apt_location,
         repos    => $ksplice::repo_name,
         key      => {
