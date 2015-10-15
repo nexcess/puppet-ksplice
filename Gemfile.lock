@@ -43,6 +43,8 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
+    beaker-puppet_install_helper (0.3.1)
+      beaker (~> 2.0)
     beaker-rspec (5.3.0)
       beaker (~> 2.0)
       rspec
@@ -308,7 +310,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beaker
+  beaker-puppet_install_helper
   beaker-rspec
   facter
   metadata-json-lint
@@ -317,6 +319,7 @@ DEPENDENCIES
   puppet-lint (>= 1.0.0)
   puppetlabs_spec_helper (>= 0.8.2)
   rspec-puppet-facts
+  serverspec
 
 BUNDLED WITH
    1.10.6
