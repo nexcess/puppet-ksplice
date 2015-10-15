@@ -1,5 +1,8 @@
 # ksplice
 
+[![Travis](https://img.shields.io/travis/nexcess/puppet-ksplice.svg)](https://travis-ci.org/nexcess/puppet-ksplice)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/nexcess/ksplice.svg)](https://forge.puppetlabs.com/nexcess/ksplice)
+
 #### Table of Contents
 
 1. [Overview](#overview)
