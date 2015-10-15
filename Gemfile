@@ -3,7 +3,9 @@ source 'https://rubygems.org'
 group :tests do
   gem 'puppetlabs_spec_helper', '>= 0.8.2'
   gem 'puppet-lint', '>= 1.0.0'
-  gem "rspec", '< 3.2.0'
+
+  # https://github.com/rspec/rspec-core/issues/1864
+  gem "rspec", '< 3.1.7'
   gem 'rspec-puppet', '~> 2.1'
   gem "rspec-puppet-facts"
   gem "metadata-json-lint"
@@ -37,4 +39,3 @@ if puppetversion = ENV['PUPPET_GEM_VERSION']
 else
   gem 'puppet', :require => false
 end
-

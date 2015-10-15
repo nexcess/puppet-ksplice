@@ -317,7 +317,7 @@ DEPENDENCIES
   puppet-blacksmith
   puppet-lint (>= 1.0.0)
   puppetlabs_spec_helper (>= 0.8.2)
-  rspec (< 3.2.0)
+  rspec (< 3.1.7)
   rspec-puppet (~> 2.1)
   rspec-puppet-facts
   serverspec
