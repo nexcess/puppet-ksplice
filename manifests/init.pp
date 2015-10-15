@@ -13,6 +13,7 @@ class ksplice (
   $cron_weekday             = $ksplice::params::cron_weekday,
 
   $repo_name                = $ksplice::params::repo_name,
+  $repo_descr               = $ksplice::params::repo_descr,
   $repo_yum_baseurl_prefix  = $ksplice::params::repo_yum_baseurl_prefix,
   $repo_apt_location        = $ksplice::params::repo_apt_location,
   $repo_enabled             = $ksplice::params::repo_enabled,

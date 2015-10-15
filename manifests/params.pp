@@ -12,6 +12,7 @@ class ksplice::params {
   $cron_weekday             = '*'
 
   $repo_name                = 'ksplice'
+  $repo_descr               = 'ksplice'
   $repo_yum_baseurl_prefix  = 'http://www.ksplice.com/yum/uptrack'
   $repo_apt_location        = 'http://www.ksplice.com/apt/'
   $repo_enabled             = true

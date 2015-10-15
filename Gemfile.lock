@@ -150,7 +150,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (0.4.7)
+    fog-softlayer (1.0.0)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)

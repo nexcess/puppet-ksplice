@@ -17,6 +17,7 @@ describe 'ksplice' do
         describe "ksplice::repo" do
           case facts[:osfamily]
           when 'RedHat'
+            it { should contain_yumrepo('ksplice').with_descr('ksplice') }
             it { should contain_yumrepo('ksplice').with_enabled(1) }
             it { should contain_yumrepo('ksplice').with_gpgcheck(1) }
             it { should contain_yumrepo('ksplice').with_gpgkey('https://www.ksplice.com/yum/RPM-GPG-KEY-ksplice') }
@@ -39,20 +40,25 @@ describe 'ksplice' do
               it { should contain_yumrepo('ksplice').with_basurl =~ %r{^http://mirror.example.com/ksplice/} }
             end
 
-          describe 'allow custom enabled' do
-            let(:params) { {:repo_enabled => false } }
-            it { should contain_yumrepo('ksplice').with_enabled(0) }
-          end
+            describe 'allow custom description' do
+              let(:params) { {:repo_descr => 'lsplice' } }
+              it { should contain_yumrepo('ksplice').with_descr('lsplice') }
+            end
 
-          describe 'allow custom gpgcheck' do
-            let(:params) { {:repo_gpgcheck => false } }
-            it { should contain_yumrepo('ksplice').with_gpgcheck(0) }
-          end
+            describe 'allow custom enabled' do
+              let(:params) { {:repo_enabled => false } }
+              it { should contain_yumrepo('ksplice').with_enabled(0) }
+            end
 
-          describe 'allow custom gpgkey' do
-            let(:params) { {:repo_gpgkey => 'https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice' } }
-            it { should contain_yumrepo('ksplice').with_gpgkey('https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice') }
-          end
+            describe 'allow custom gpgcheck' do
+              let(:params) { {:repo_gpgcheck => false } }
+              it { should contain_yumrepo('ksplice').with_gpgcheck(0) }
+            end
+
+            describe 'allow custom gpgkey' do
+              let(:params) { {:repo_gpgkey => 'https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice' } }
+              it { should contain_yumrepo('ksplice').with_gpgkey('https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice') }
+            end
           when 'Debian'
             it { should contain_apt__source('ksplice').with_location('http://www.ksplice.com/apt/') }
             it { should contain_apt__source('ksplice').with_repos('ksplice') }
@@ -67,7 +73,6 @@ describe 'ksplice' do
               it { should contain_apt__source('ksplice').with_key('id' => 'ABCD1234', 'source' => 'https://example.com/key.asc') }
             end
           end
-
         end
 
         describe "ksplice::install" do

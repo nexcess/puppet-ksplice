@@ -101,6 +101,9 @@ Specify a custom cron_weekday. Default value: '*'
 #### `repo_name`
 Specify a custom name for the yum and apt repo. Default value: 'ksplice'
 
+#### `repo_desc`
+Specify a custom description for the yum repo. Default value: 'ksplice'
+
 #### `repo_yum_baseurl_prefix`
 Specify a baseurl_prefix for the yum repo. It isn't documented anywhere but you can mirror the uptrack packages from ksplice.com using rsync. Default value: 'http://www.ksplice.com/yum/uptrack/'
 
