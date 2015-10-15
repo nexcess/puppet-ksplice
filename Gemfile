@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 group :tests do
   gem 'puppetlabs_spec_helper', '>= 0.8.2'
   gem 'puppet-lint', '>= 1.0.0'
+  gem "rspec", '< 3.2.0'
+  gem 'rspec-puppet', '~> 2.1'
   gem "rspec-puppet-facts"
   gem "metadata-json-lint"
 end
