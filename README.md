@@ -98,6 +98,9 @@ Specify a custom cron_monthday. Default value: '*'
 #### `cron_weekday`
 Specify a custom cron_weekday. Default value: '*'
 
+#### `repo_install`
+Specify if you want the module to install the ksplice repo. Default value: 'true'
+
 #### `repo_name`
 Specify a custom name for the yum and apt repo. Default value: 'ksplice'
 

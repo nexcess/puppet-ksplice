@@ -59,6 +59,11 @@ describe 'ksplice' do
               let(:params) { {:repo_gpgkey => 'https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice' } }
               it { should contain_yumrepo('ksplice').with_gpgkey('https://mirror.example.com/ksplice/yum/RPM-GPG-KEY-ksplice') }
             end
+
+            describe 'allow repo_install = false' do
+              let(:params) { {:repo_install => false } }
+              it { should_not contain_yumrepo('ksplice') }
+            end
           when 'Debian'
             it { should contain_apt__source('ksplice').with_location('http://www.ksplice.com/apt/') }
             it { should contain_apt__source('ksplice').with_repos('ksplice') }
@@ -71,6 +76,10 @@ describe 'ksplice' do
             describe 'allow custom key id and source' do
               let(:params) { {:repo_key_id => 'ABCD1234', :repo_key_source => 'https://example.com/key.asc' } }
               it { should contain_apt__source('ksplice').with_key('id' => 'ABCD1234', 'source' => 'https://example.com/key.asc') }
+            end
+            describe 'allow repo_install = false' do
+              let(:params) { {:repo_install => false } }
+              it { should_not contain_apt__source('ksplice') }
             end
           end
         end
