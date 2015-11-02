@@ -5,6 +5,7 @@ class ksplice::params {
   $config_upgrade_on_reboot = true
   $config_autoinstall       = true
 
+  $cron_install             = true
   $cron_minute              = [fqdn_rand(30) , fqdn_rand(30) + 30]
   $cron_hour                = '*'
   $cron_month               = '*'

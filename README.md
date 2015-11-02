@@ -83,6 +83,9 @@ Automatically install all available updates at boot time, even if rebooted into 
 #### `config_autoinstall`
 Uptrack runs in a cron job to check for and download new updates. You can can configure this cron job to automatically install new updates as they become available. Default value: 'true'
 
+#### `cron_install`
+Specify if you want the module to install the ksplice cron job. Default value: true
+
 #### `cron_minute`
 Specify a custom cron_minute. Default value: `[fqdn_rand(30) , fqdn_rand(30) + 30]`
 

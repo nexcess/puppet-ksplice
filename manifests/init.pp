@@ -6,6 +6,7 @@ class ksplice (
   $config_upgrade_on_reboot = $ksplice::params::config_upgrade_on_reboot,
   $config_autoinstall       = $ksplice::params::config_autoinstall,
 
+  $cron_install             = $ksplice::params::cron_install,
   $cron_minute              = $ksplice::params::cron_minute,
   $cron_hour                = $ksplice::params::cron_hour,
   $cron_month               = $ksplice::params::cron_month,
@@ -31,7 +32,7 @@ class ksplice (
     validate_bool($config_install_on_reboot)
     validate_bool($config_upgrade_on_reboot)
     validate_bool($config_autoinstall)
-
+    validate_bool($cron_install)
     validate_bool($repo_install)
     validate_string($repo_name)
     validate_string($repo_yum_baseurl_prefix)

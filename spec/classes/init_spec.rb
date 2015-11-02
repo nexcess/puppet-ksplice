@@ -126,6 +126,11 @@ describe 'ksplice' do
             it { should contain_cron('ksplice').with_weekday('4') }
           end
 
+          describe 'allow cron_install = false' do
+            let(:params) { {:cron_install => false } }
+            it { should_not contain_cron('ksplice') }
+          end
+
         end
 
         describe "ksplice::config" do
