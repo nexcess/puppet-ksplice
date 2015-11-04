@@ -45,8 +45,10 @@ class ksplice (
 
     validate_string($package_ensure)
 
+    anchor {'ksplice::begin':} ->
     class{'::ksplice::repo':} ->
     class{'::ksplice::install':} ->
     class{'::ksplice::config':} ->
-    class{'::ksplice::cron':}
+    class{'::ksplice::cron':} ->
+    anchor {'ksplice::end':}
 }
