@@ -29,6 +29,8 @@ A license/access key from ksplice is required for rebootless upgrades to work.
 The module will install the ksplice repository, install the uptrack package, and
 manage the ksplice configuration file.
 
+This module follows [semantic versioning](http://semver.org/).
+
 ## Usage
 
 ### Beginning with ksplice
