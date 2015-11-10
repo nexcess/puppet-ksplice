@@ -1,8 +1,8 @@
 HOSTS:
   centos-70-x64:
     platform: el-7-x86_64
-    box: chef/centos-7.0
-    box_url: https://vagrantcloud.com/chef/boxes/centos-7.0
+    box: bento/centos-7.0
+    box_url: https://vagrantcloud.com/bento/boxes/centos-7.0
     hypervisor: vagrant
 CONFIG:
   type: foss

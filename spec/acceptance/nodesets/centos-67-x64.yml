@@ -1,10 +1,10 @@
 HOSTS:
-  centos-66-x64:
+  centos-67-x64:
     roles:
       - master
     platform: el-6-x86_64
-    box: chef/centos-6.6
-    box_url: https://vagrantcloud.com/chef/boxes/centos-6.6
+    box: bento/centos-6.7
+    box_url: https://vagrantcloud.com/bento/boxes/centos-6.7
     hypervisor: vagrant
 CONFIG:
   type: foss
