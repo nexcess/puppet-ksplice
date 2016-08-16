@@ -1,3 +1,11 @@
+## 2.0.1 - 2016-08-16
+- remove explicit fedora support. it should still work but no one seems to use
+  ksplice on fedora and puppet support for new versions of fedoras has lagged
+  behind in the past
+- remove Debian 6 support as it is EOL
+- add support for Ubuntu 16.04
+- add beaker tests
+
 ## 2.0.0 - 2015-11-10
 - remove 'repo_ensure' parameter
 - add 'repo_desc' parameter
