@@ -19,7 +19,6 @@ This module installs, configures, and manages ksplice for rebootless kernel upgr
 
 ## Module Description
 
-
 The ksplice module installs, configures, and manages
 [ksplice](http://ksplice.oracle.com/) to update your kernel without needing to
 reboot.
@@ -143,12 +142,6 @@ Specify a version of status for the uptrack package. Default value: 'present'
 * ksplice_kernelversion: effective kernel version
 * ksplice_kernelmajversion: effective kernel major version
 * ksplice_kernel_package_version: effective version of the distribution's kernel package
-
-## Limitations
-
-The module works with currently supported versions of CentOS, RHEL, Debian,
-Ubuntu, and Fedora. It has been tested on CentOS, Debian, Ubuntu, and Fedora. It
-can probably work on Oracle Linux and Scientific Linux with minimal work.
 
 ## Development
 
