@@ -8,11 +8,6 @@ matrix:
   fast_finish: true
   include:
   - rvm: 2.1
-    env: PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/centos-5-x64
-    script: bundle exec rake beaker
-    services: docker
-    sudo: required
-  - rvm: 2.1
     env: PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/centos-6-x64
     script: bundle exec rake beaker
     services: docker
