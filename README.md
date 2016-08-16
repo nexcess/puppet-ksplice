@@ -19,7 +19,6 @@ This module installs, configures, and manages ksplice for rebootless kernel upgr
 
 ## Module Description
 
-
 The ksplice module installs, configures, and manages
 [ksplice](http://ksplice.oracle.com/) to update your kernel without needing to
 reboot.
@@ -144,12 +143,6 @@ Specify a version of status for the uptrack package. Default value: 'present'
 * ksplice_kernelmajversion: effective kernel major version
 * ksplice_kernel_package_version: effective version of the distribution's kernel package
 
-## Limitations
-
-The module works with currently supported versions of CentOS, RHEL, Debian,
-Ubuntu, and Fedora. It has been tested on CentOS, Debian, Ubuntu, and Fedora. It
-can probably work on Oracle Linux and Scientific Linux with minimal work.
-
 ## Development
 
 Install necessary gems:
@@ -174,8 +167,12 @@ bundle exec rake spec
 
 Run acceptance tests with a ksplice license:
 ```
-KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/centos-66-x64.yml bundle exec rake acceptance
-KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/debian-610-x64.yml bundle exec rake acceptance
+KSPLICE_LICENSE=abc123 PUPPET_INSTALL_TYPE=agent BEAKER_set=centos-7-x64 bundle exec rake acceptance
+```
+
+Run acceptance tests on docker without a ksplice license (faster):
+```
+PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/centos-7-x64 bundle exec rake acceptance
 ```
 
 ## Copyright
