@@ -174,8 +174,12 @@ bundle exec rake spec
 
 Run acceptance tests with a ksplice license:
 ```
-KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/centos-66-x64.yml bundle exec rake acceptance
-KSPLICE_LICENSE=abc123 BEAKER_setfile=spec/acceptance/nodesets/debian-610-x64.yml bundle exec rake acceptance
+KSPLICE_LICENSE=abc123 PUPPET_INSTALL_TYPE=agent BEAKER_set=centos-7-x64 bundle exec rake acceptance
+```
+
+Run acceptance tests on docker without a ksplice license (faster):
+```
+PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/centos-7-x64 bundle exec rake acceptance
 ```
 
 ## Copyright
