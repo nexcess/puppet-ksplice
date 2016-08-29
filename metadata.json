@@ -1,6 +1,6 @@
 {
   "name": "nexcess-ksplice",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "nexcess",
   "summary": "Install and configure ksplice for Centos, RHEL, Debian, and Ubuntu",
   "license": "Apache-2.0",
