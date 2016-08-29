@@ -1,0 +1,12 @@
+HOSTS:
+  oracle-6-x64:
+    platform: el-6-x86_64
+    hypervisor: docker
+    image: oraclelinux:6
+    docker_cmd: '["/sbin/init"]'
+    docker_image_commands:
+      - 'rm -rf /var/run/network/*'
+      - 'yum install -y crontabs tar wget which'
+CONFIG:
+  type: foss
+  masterless: true

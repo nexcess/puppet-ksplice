@@ -18,6 +18,16 @@ matrix:
     services: docker
     sudo: required
   - rvm: 2.1
+    env: PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/oraclelinux-6-x64
+    script: bundle exec rake beaker
+    services: docker
+    sudo: required
+  - rvm: 2.1
+    env: PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/oraclelinux-7-x64
+    script: bundle exec rake beaker
+    services: docker
+    sudo: required
+  - rvm: 2.1
     env: PUPPET_INSTALL_TYPE=agent BEAKER_set=docker/debian-8-x64
     script: bundle exec rake beaker
     services: docker
