@@ -1,3 +1,7 @@
+## 2.0.2 - 2016-08-29
+- remove Ubuntu 15.04 support as it is EOL
+- add Oracle Linux 5, 6, 7 support
+
 ## 2.0.1 - 2016-08-16
 - remove explicit fedora support. it should still work but no one seems to use
   ksplice on fedora and puppet support for new versions of fedoras has lagged
