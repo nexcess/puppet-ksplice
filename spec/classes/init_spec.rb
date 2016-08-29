@@ -29,6 +29,8 @@ describe 'ksplice' do
               it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/rhel/$releasever/$basearch/") }
             when 'Fedora'
               it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/fedora/$releasever/$basearch/") }
+            when 'OracleLinux'
+              it { should contain_yumrepo('ksplice').with_baseurl("http://www.ksplice.com/yum/uptrack/ol/$releasever/$basearch/") }
             end
 
             describe 'allow custom name' do
