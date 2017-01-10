@@ -49,6 +49,7 @@ By default uptrack runs every 30 minutes unless you give it a custom cron time.
 ```
 class { '::ksplice':
   config_accesskey	=> 'YOUR_LICENSE_KEY',
+  config_proxy		=> 'https://your.proxy.server:port',
   cron_minute		=> '13',
   cron_hour			=> '03',
   cron_month		=> '*',
@@ -74,6 +75,9 @@ Specify a custom template to use. Default value: 'ksplice/uptrack.conf.erb'
 
 #### `config_accesskey`
 Specify your accesskey. Default value: 'INSERT_ACCESS_KEY'
+
+#### `config_proxy`
+Specify your proxyserver. Default value: 'None'
 
 #### `config_install_on_reboot`
 Automatically install updates at boot time. If this is set, on reboot into the same kernel, uptrack will re-install the same set of updates that were present before the reboot. Default value: 'true'

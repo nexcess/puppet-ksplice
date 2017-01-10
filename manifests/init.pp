@@ -2,6 +2,7 @@ class ksplice (
 
   $config_template          = $ksplice::params::config_template,
   $config_accesskey         = $ksplice::params::config_accesskey,
+  $config_proxy             = $ksplice::params::config_proxy,
   $config_install_on_reboot = $ksplice::params::config_install_on_reboot,
   $config_upgrade_on_reboot = $ksplice::params::config_upgrade_on_reboot,
   $config_autoinstall       = $ksplice::params::config_autoinstall,
@@ -29,6 +30,7 @@ class ksplice (
   ) inherits ksplice::params {
     validate_string($config_template)
     validate_string($config_accesskey)
+    validate_string($config_proxy)
     validate_bool($config_install_on_reboot)
     validate_bool($config_upgrade_on_reboot)
     validate_bool($config_autoinstall)
