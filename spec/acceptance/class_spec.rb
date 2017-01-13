@@ -38,6 +38,7 @@ describe 'ksplice class' do
         it { is_expected.to be_owned_by('root') }
         it { is_expected.to be_grouped_into('root') }
         it { is_expected.to contain('accesskey = INSERT_ACCESS_KEY') }
+        it { is_expected.to contain('https_proxy = None') }
         it { is_expected.to contain('install_on_reboot = yes') }
         it { is_expected.to contain('upgrade_on_reboot = yes') }
         it { is_expected.to contain('autoinstall = yes') }

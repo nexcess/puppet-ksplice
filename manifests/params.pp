@@ -1,6 +1,7 @@
 class ksplice::params {
   $config_template          = 'ksplice/uptrack.conf.erb'
   $config_accesskey         = 'INSERT_ACCESS_KEY'
+  $config_proxy             = 'None'
   $config_install_on_reboot = true
   $config_upgrade_on_reboot = true
   $config_autoinstall       = true

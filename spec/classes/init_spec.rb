@@ -140,6 +140,7 @@ describe 'ksplice' do
           it { should contain_file('/etc/uptrack/uptrack.conf').with_group('root') }
           it { should contain_file('/etc/uptrack/uptrack.conf').with_mode('0640') }
           it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/accesskey = INSERT_ACCESS_KEY/) }
+          it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/https_proxy = None/) }
           it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/install_on_reboot = yes/) }
           it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/upgrade_on_reboot = yes/) }
           it { should contain_file('/etc/uptrack/uptrack.conf').with_content(/autoinstall = yes/) }

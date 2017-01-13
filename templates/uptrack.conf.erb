@@ -18,7 +18,7 @@ accesskey = <%= scope.lookupvar('ksplice::config_accesskey') %>
 #
 # You can also set this to "None" to force Uptrack not to use a proxy,
 # even if one is set in the environment.
-https_proxy =
+https_proxy = <%= scope.lookupvar('ksplice::config_proxy') %>
 
 # Look for proxy setting in the system-wide GConf database, if it's
 # not set in the above variable or in an environment variable.
