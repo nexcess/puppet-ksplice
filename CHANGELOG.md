@@ -1,3 +1,6 @@
+## 2.0.3 - 2017-01-19
+- add proxy functionality to configuration file
+
 ## 2.0.2 - 2016-08-29
 - remove Ubuntu 15.04 support as it is EOL
 - add Oracle Linux 5, 6, 7 support
